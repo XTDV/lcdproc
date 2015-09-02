@@ -553,6 +553,9 @@ menuscreen_create_menu(void)
 			menu_add_item(options_menu, driver_menu);
 			if (contrast_avail) {
 				int contrast = driver->get_contrast(driver);
+				
+				/* fix initial contrast value not applied*/
+				driver->set_contrast(driver, contrast);
 
 				/* menu's client is NULL since we're in the server */
 				slider = menuitem_create_slider("contrast", contrast_handler, "Contrast",
